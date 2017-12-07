@@ -1,21 +1,23 @@
-<h1>Listing all articles</h1>
-<p>
-  <%= link_to 'Create new article',new_article_path %>
-</p>
-<table style="text-align:left">
-  <tr>
-    <th style="border:1px solid black;">Title</th>
-    <th style="border:1px solid black;">Description</th>
-  </tr>
-  
-  
+<h1 align="center">Listing all articles</h1>
+
     <% @articles.each do |msg| %>
-      <tr>
-        <td style="border:1px solid black;padding:5px"><%= msg.title %></td>
-        <td style="border:1px solid black;"><%= msg.description %></td>
-        <td><%= link_to 'edit',edit_article_path(msg) %></td>
-        <td><%= link_to 'show',article_path(msg) %></td>
-        <td><%= link_to 'delete',article_path(msg),method: :delete,data: {confirm: "Are you sure?"} %></td>
-      </tr>
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+      <div class="well well-lg">
+      <div class="article-title">
+        <%= link_to msg.title,article_path(msg) %>
+      </div>
+      <div class="article-body">
+      <%= truncate(msg.description,length: 100) %>  
+      </div>
+        <div class="article-actions">
+    <%= link_to 'Edit this article ',edit_article_path(msg),class: "btn btn-xs btn-primary" %>
+    <%= link_to 'Delete this article',article_path(msg),method: :delete,
+                                    data:{confirm: "Are you sure"},
+                                    class: "btn btn-xs btn-danger" %>
+    </div>
+    </div>
+    </div>
+    </div>
+    
     <% end %>
-</table>
