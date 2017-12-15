@@ -29,7 +29,7 @@ before_action :require_same_user , only: [:edit, :update,:destroy]
  end
  
  def create
-  debugger 
+ 
   @article = Article.new(article_params)
   @article.user=current_user
   if @article.save
